@@ -1,12 +1,12 @@
 require_relative './config/environment'
 require 'sinatra/activerecord/rake'
-require 'my-sinatra-app'
 
-desc "run irb console"
-task :console, :environment do |t, args|
-ENV["SINATRA_ENV"] = args[:environment] ||= "development"
+ENV["SINATRA_ENV"]||= "development"
 
-exec "irb -r/completion -r my-sinatra-app"
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
 
 # Type `rake -T` on your command line to see the available rake tasks
+task :console do
+  Pry.start
 end
